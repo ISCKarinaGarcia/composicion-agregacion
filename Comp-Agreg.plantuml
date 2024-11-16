@@ -1,0 +1,33 @@
+@startuml
+
+class PlanEstudio {
+    - String _nombre
+    - int _duracionMeses
+    + getNombre() : String
+    + getDuracionMeses() : int
+}
+
+class EstudianteMaestria {
+    - String _nombre
+    - int _id
+    + getNombre() : String
+    + getId() : int
+}
+
+class ProgramaMaestria {
+    - PlanEstudio planEstudio
+    - List<EstudianteMaestria> estudiantes
+    + agregarEstudiantes(estudiantes: List<EstudianteMaestria>) : void
+    + getPlanEstudio() : PlanEstudio
+    + getEstudiantes() : List<EstudianteMaestria>
+}
+
+'Relacion entre programa maestria y plan de estudio donde la composicion indica'
+'que el plan de estudio no puede existir sin el programa maestria'
+ProgramaMaestria  *--  PlanEstudio : Composición
+
+
+'Agregacion indica que los estudiantes pueden existir independientemente del programa'
+ProgramaMaestria  o--  EstudianteMaestria : Agregación
+
+@enduml
